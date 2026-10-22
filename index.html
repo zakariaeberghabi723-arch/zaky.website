@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>zaky.exe — personal space</title>
+  <meta name="description" content="A small corner of the internet belonging to Zakariae, also known as Zaky.">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --bg: #080808;
+      --panel: #101010;
+      --white: #e7e4df;
+      --muted: #85817e;
+      --red: #a52d37;
+      --line: #393333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: "Courier Prime", monospace;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.13;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        #ffffff 4px
+      );
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(100% - 36px, 900px);
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+    }
+
+    .logo {
+      font-size: 17px;
+      font-weight: bold;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    .status {
+      color: var(--muted);
+    }
+
+    .status::before {
+      content: "● ";
+      color: #9a3940;
+    }
+
+    .hero {
+      padding: 105px 0 85px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: "Space Mono", monospace;
+      font-size: clamp(48px, 11vw, 94px);
+      line-height: 1.05;
+      letter-spacing: -7px;
+      text-transform: lowercase;
+    }
+
+    h1 .dot {
+      color: var(--red);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 20px;
+      max-width: 460px;
+      font-size: 14px;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .enter {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--white);
+      border: 1px solid var(--red);
+      padding: 11px 17px;
+      font-size: 12px;
+      transition: 0.2s;
+    }
+
+    .enter:hover {
+      background: var(--red);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .ascii {
+      color: #68605e;
+      font-size: 11px;
+      white-space: pre;
+      line-height: 1.2;
+    }
+
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      color: var(--red);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-family: "Space Mono", monospace;
+      font-size: clamp(24px, 5vw, 35px);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .about-text {
+      max-width: 650px;
+      color: #c1bcb8;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .highlight {
+      color: var(--white);
+      text-decoration: underline;
+      text-decoration-color: var(--red);
+      text-underline-offset: 5px;
+    }
+
+    .interests {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .interest {
+      min-height: 145px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 19px 15px;
+      transition: 0.2s;
+    }
+
+    .interest:hover {
+      border-color: var(--red);
+      transform: translateY(-3px);
+    }
+
+    .interest .number {
+      color: var(--red);
+      font-size: 11px;
+    }
+
+    .interest h3 {
+      font-family: "Space Mono", monospace;
+      font-size: 15px;
+      margin: 20px 0 7px;
+    }
+
+    .interest p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .note {
+      background: #100d0d;
+      border-left: 2px solid var(--red);
+      padding: 20px;
+      color: #c1bcb8;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .note strong {
+      color: var(--white);
+    }
+
+    .contact {
+      text-align: center;
+      padding: 65px 0;
+    }
+
+    .contact p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .secret-btn {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--white);
+      padding: 12px 18px;
+      margin-top: 25px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .secret-btn:hover {
+      border-color: var(--red);
+      color: #d86d76;
+    }
+
+    #secret {
+      color: var(--red);
+      margin-top: 18px;
+      min-height: 25px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+      color: #6f6966;
+      font-size: 11px;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 75px 0 60px;
+      }
+
+      h1 {
+        letter-spacing: -4px;
+      }
+
+      .interests {
+        grid-template-columns: 1fr;
+      }
+
+      .interest {
+        min-height: auto;
+      }
+
+      .ascii {
+        display: none;
+      }
+
+      section {
+        padding: 45px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <div class="logo">zaky<span>.exe</span></div>
+      <div class="status">PERSONAL SPACE</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">/// a little corner of the internet</p>
+
+        <h1>hey, i'm<br>zaky<span class="dot">.</span></h1>
+
+        <p class="subtitle">
+          Just Zakariae, from Morocco.
+          Into computers, programming and black metal.
+        </p>
+
+        <div class="hero-bottom">
+          <a href="#about" class="enter">ENTER MY WORLD ↘</a>
+
+          <div class="ascii" aria-hidden="true">  /\_/\
+ ( o.o )
+  > ^ <</div>
+        </div>
+      </section>
+
+      <section id="about">
+        <p class="section-label">01 / ABOUT ME</p>
+        <h2>A bit about me.</h2>
+
+        <p class="about-text">
+          I'm <span class="highlight">Zakariae</span>, but
+          most people can call me Zaky. I'm from Morocco,
+          and I've been interested in computers and programming
+          since I was a kid.
+
+          <br><br>
+
+          I'm into black metal, and I usually enjoy my own
+          company. I like having my own space, doing my own
+          thing, and spending time with what interests me.
+
+          <br><br>
+
+          Nothing too complicated. Just me, my interests,
+          and this little corner of the internet.
+        </p>
+      </section>
+
+      <section id="interests">
+        <p class="section-label">02 / THINGS I LIKE</p>
+        <h2>My kind of stuff.</h2>
+
+        <div class="interests">
+          <article class="interest">
+            <span class="number">[ 01 ]</span>
+            <h3>Computers</h3>
+            <p>Been interested since I was a kid.</p>
+          </article>
+
+          <article class="interest">
+            <span class="number">[ 02 ]</span>
+            <h3>Programming</h3>
+            <p>Curiosity about code and how things work.</p>
+          </article>
+
+          <article class="interest">
+            <span class="number">[ 03 ]</span>
+            <h3>Black Metal</h3>
+            <p>Dark sounds. My kind of music.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <p class="section-label">03 / A SMALL NOTE</p>
+        <div class="note">
+          <strong>Not much to explain.</strong><br>
+          I don't need a lot of noise around me.
+          Sometimes, having my own space is enough.
+        </div>
+      </section>
+
+      <section class="contact">
+        <p class="section-label">04 / YOU MADE IT HERE</p>
+        <h2>That's pretty much me.</h2>
+        <p>No socials. No big introduction. Just my own space.</p>
+
+        <button class="secret-btn" id="secretBtn">
+          click for no reason +
+        </button>
+
+        <p id="secret" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer>
+      <span>zaky.exe © 2026</span>
+      <span>made in morocco.</span>
+    </footer>
+
+  </div>
+
+  <script>
+    const button = document.getElementById("secretBtn");
+    const secret = document.getElementById("secret");
+
+    let clicked = false;
+
+    button.addEventListener("click", function () {
+      clicked = !clicked;
+
+      if (clicked) {
+        secret.textContent = "you clicked it. nothing happened. :)";
+        button.textContent = "okay, stop clicking -";
+      } else {
+        secret.textContent = "";
+        button.textContent = "click for no reason +";
+      }
+    });
+  </script>
+</body>
+</html>
